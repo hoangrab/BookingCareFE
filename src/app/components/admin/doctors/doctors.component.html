@@ -1,0 +1,144 @@
+<main id="main" class="main">
+
+    <div class="pagetitle" style="margin-top: 20px; margin-bottom: 20px;">
+      <h1>Danh sách bác sĩ đang làm</h1>
+      <!-- <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav> -->
+      <br>
+      <button type="button" mat-button (click)="openDialog()" class="btn btn-outline-success rounded-pill"><i class="bi bi-person-plus-fill"></i> &nbsp;Thêm mới</button>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          
+
+          <div class="card">
+            <div class="card-body">
+              <!-- <h5 class="card-title">Table with hoverable rows</h5> -->
+
+              <!-- Table with hoverable rows -->
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Avatar</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Khoa</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col" style="margin-left: 50px;">Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <th>
+                        <img src="https://tse3.mm.bing.net/th?id=OIP.qIu2wcvur-VB04HW0V0j0QHaFj&pid=Api&P=0&h=180" 
+                        style="width: 50px;height: 50px;"/>
+                    </th>
+                    <td>Brandon Jacob</td>
+                    <td>Phụ sản</td>
+                    <td>28</td>
+                    <td>2016-05-25</td>
+                    <td>
+                      <button type="button" class="btn btn-primary rounded-pill">Xem</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-warning rounded-pill">Sửa</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-danger rounded-pill">Xóa</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <th>
+                        <img src="https://tse3.mm.bing.net/th?id=OIP.qIu2wcvur-VB04HW0V0j0QHaFj&pid=Api&P=0&h=180" 
+                        style="width: 50px;height: 50px;"/>
+                    </th>
+                    <td>Brandon Jacob</td>
+                    <td>Phụ sản</td>
+                    <td>28</td>
+                    <td>2016-05-25</td>
+                    <td style="justify-content: center;">
+                      <button type="button" class="btn btn-primary rounded-pill">Xem</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-warning rounded-pill">Sửa</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-danger rounded-pill">Xóa</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <th>
+                        <img src="https://tse3.mm.bing.net/th?id=OIP.qIu2wcvur-VB04HW0V0j0QHaFj&pid=Api&P=0&h=180" 
+                        style="width: 50px;height: 50px;"/>
+                    </th>
+                    <td>Brandon Jacob</td>
+                    <td>Phụ sản</td>
+                    <td>28</td>
+                    <td>2016-05-25</td>
+                    <td>
+                      <button type="button" class="btn btn-primary rounded-pill">Xem</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-warning rounded-pill">Sửa</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-danger rounded-pill">Xóa</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <th>
+                        <img src="https://tse3.mm.bing.net/th?id=OIP.qIu2wcvur-VB04HW0V0j0QHaFj&pid=Api&P=0&h=180" 
+                        style="width: 50px;height: 50px;"/>
+                    </th>
+                    <td>Brandon Jacob</td>
+                    <td>Phụ sản</td>
+                    <td>28</td>
+                    <td>2016-05-25</td>
+                    <td>
+                      <button type="button" class="btn btn-primary rounded-pill">Xem</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-warning rounded-pill">Sửa</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-danger rounded-pill">Xóa</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <th>
+                        <img src="https://tse3.mm.bing.net/th?id=OIP.qIu2wcvur-VB04HW0V0j0QHaFj&pid=Api&P=0&h=180" 
+                        style="width: 50px;height: 50px;"/>
+                    </th>
+                    <td>Brandon Jacob</td>
+                    <td>Phụ sản</td>
+                    <td>28</td>
+                    <td>2016-05-25</td>
+                    <td>
+                      <button type="button" class="btn btn-primary rounded-pill">Xem</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-warning rounded-pill">Sửa</button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-danger rounded-pill">Xóa</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- End Table with hoverable rows -->
+              <!-- <div class="card">
+                <div class="card-body"> -->
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination" style="justify-content: center;margin-top: 20px;">
+                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                  </nav><!-- End Basic Pagination -->
+    
+                <!-- </div> -->
+              <!-- </div> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->

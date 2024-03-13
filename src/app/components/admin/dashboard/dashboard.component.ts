@@ -9,22 +9,5 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  products: Product[] = [];
-
-  constructor(private productService : ProductService){};
-
-  ngOnInit() {
-    this.productService.getAllProduct()
-    .pipe(delay(3000))
-    .subscribe({
-      next: (value : any) => {
-        console.log(value);
-        this.products = value.products;
-      },
-      error: (error) => {
-        console.log('hiban' + error);
-      }
-    });
-  }
 
 }
