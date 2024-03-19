@@ -1,23 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { DoctorComponent } from './components/doctor/doctor.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { guardGuard } from './guards/guard.guard';
+import { ClientComponent } from './components/client/client.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    redirectTo: 'public/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'public',
+    component: ClientComponent,
+    loadChildren: ()=> import('./components/client/client.module').then(m => m.ClientModule)
   },
   {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: 'register',
-    component: RegisterComponent,
-    canActivate: [guardGuard]
+    path: 'doctor',
+    component: DoctorComponent,
+    loadChildren: () => import('./components/doctor/doctor.module').then(m => m.DoctorModule)
   },
   {
     path: 'admin',

@@ -1,0 +1,73 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Thời khóa biểu</h1>
+    </div><!-- End Page Title -->
+    <br>
+
+    <section class="section">
+        <div class="row">
+
+
+             <!-- Sales Card -->
+        <div class="col-xxl-4 col-md-4">
+            <div class="card info-card sales-card">
+              <div class="card-body">
+                <br>
+                <h4>Ngày bắt đầu: &nbsp;<input type="date" style="max-width: 200px;"></h4>
+                <h4>Ngày kết thúc:&nbsp;<input type="date" style="max-width: 200px;"></h4>
+                <button class="btn btn-primary">Lọc</button>
+              </div>
+  
+            </div>
+          </div><!-- End Sales Card -->
+
+
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="card-body" *ngIf="!(lschedule | async); else loaded">
+                            <ng-container [ngTemplateOutlet]="loading"></ng-container>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+<ng-template #loading>
+    <div class="spinner-border" style="width: 100px; height: 100px;margin-left: 48%;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </ng-template>
+  
+<ng-template #loaded>
+    <!-- Table with hoverable rows -->
+    <table class="table table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Thứ</th>
+                <th scope="col">Ngày</th>
+                <th scope="col">Sáng</th>
+                <th scope="col">Chiều</th>
+                <th scope="col">Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr *ngFor="let item of lschedule | async as Schedule; index as idx" style="height: 80px;">
+                <th>{{idx+1}}</th>
+                <td>{{item.weekday}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.session === 'Morning' ? (item.patient.gender + ' - ' + item.patient.dob) : ''}}</td>
+                <td>{{item.session !== 'Morning' ? (item.patient.gender + ' - ' + item.patient.dob) : ''}}</td>
+                <td>{{item.note}}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
