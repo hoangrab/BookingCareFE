@@ -8,12 +8,13 @@ import { ClientComponent } from './components/client/client.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'public/home',
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    component: ClientComponent
+    path: 'public',
+    component: ClientComponent,
+    loadChildren: ()=> import('./components/client/client.module').then(m => m.ClientModule)
   },
   {
     path: 'login',

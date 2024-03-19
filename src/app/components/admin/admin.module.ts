@@ -6,20 +6,24 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DoctorsComponent } from './doctors/doctors.component';
-import { DoctordetailComponent } from './doctors/doctordetail/doctordetail.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { MajorComponent } from './major/major.component';
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatButtonModule } from "@angular/material/button";
+import { ArticleComponent } from './article/article.component';
+import { BookingComponent } from './booking/booking.component';
+import { HistoryComponent } from './history/history.component';
+import { ContactComponent } from './contact/contact.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChartModule } from "primeng/chart";
 
 
 
 
 @NgModule({
-    declarations: [AdminComponent, HeaderComponent, FooterComponent, NavbarComponent, DoctorsComponent, DoctordetailComponent,DashboardComponent, MajorComponent],
+    declarations: [AdminComponent, HeaderComponent, FooterComponent, NavbarComponent, DoctorsComponent,DashboardComponent, MajorComponent, ArticleComponent, ContactComponent, BookingComponent, HistoryComponent, ContactComponent, ProfileComponent],
     imports: [
       CommonModule, // <-- Import thêm để dùng forms sau này
-      AdminRoutingModule
+      AdminRoutingModule,
+      ChartModule
     ],
   })
   export class AdminModule {}

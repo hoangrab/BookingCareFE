@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, map, of, switchMap } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { Observable, filter, map, of, switchMap } from 'rxjs';
 import { Doctor } from 'src/app/models/doctor';
 import { DoctorService } from 'src/app/services/doctor.service';
 
@@ -12,23 +12,35 @@ import { DoctorService } from 'src/app/services/doctor.service';
   styleUrls: ['./doctors.component.scss']
 })
 export class DoctorsComponent {
+  title=''
+  itemout: Doctor={
+    id: '',
+    avatar: '',
+    name: '',
+    khoa: {
+      id: 0,
+      name: ''
+    },
+    age: 0,
+    phone: '',
+    active: false
+  };
+  constructor(private route: ActivatedRoute,
+    private doctorService: DoctorService,
+    private router: Router) {}
 
-  constructor(public dialog: MatDialog) {}
+ldoctors!: Observable<Doctor[]>;
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog,{
-      height: '500px',
-      width: '600px',
-
-    });
-
-  }
+ngOnInit() {
+  this.route.params.subscribe(params => {
+    const activeParam = params['vip'];
+    this.title = activeParam === 'active' ? 'Danh sách bác sĩ đang làm' : 'Danh sách bác sĩ đã rời';
+    this.ldoctors = this.doctorService.getAllDoctor(activeParam === 'active');
+    this.itemout.active= (activeParam === 'active')
+  });
 }
 
-@Component({
-  selector: 'dialog-content-example-dialog',
-  templateUrl: 'doctordetail/contentvip.html',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule]
-})
-export class DialogContentExampleDialog {}
+  xem(item : Doctor) {
+    this.itemout = item;
+  }
+}

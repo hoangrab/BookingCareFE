@@ -4,6 +4,11 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AdminComponent } from "./admin.component";
 import { DoctorsComponent } from "./doctors/doctors.component";
 import { MajorComponent } from "./major/major.component";
+import { ArticleComponent } from "./article/article.component";
+import { BookingComponent } from "./booking/booking.component";
+import { HistoryComponent } from "./history/history.component";
+import { ContactComponent } from "./contact/contact.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 
 const router: Routes = [
@@ -12,13 +17,38 @@ const router: Routes = [
         component: DashboardComponent
     },
     {
-        path: 'doctors',
+        path: 'home',
+        component: DashboardComponent
+    },
+    {
+        path: 'article',
+        component: ArticleComponent
+    },
+    {
+        path: 'doctors/:vip',
         component: DoctorsComponent
     },
     {
         path: 'major',
         component: MajorComponent
+    },
+    {
+        path: 'booking',
+        component: BookingComponent
+    },
+    {
+        path: 'history',
+        component: HistoryComponent
+    },
+    {
+        path: 'contact',
+        component: ContactComponent
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent
     }
+
 ];
 @NgModule({
     imports: [RouterModule.forChild(router)],

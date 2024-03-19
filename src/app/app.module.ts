@@ -16,6 +16,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { ClientModule } from './components/client/client.module';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { FormsModule, NgModel } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     MatNativeDateModule,
     ClientModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

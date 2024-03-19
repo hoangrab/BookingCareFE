@@ -33,7 +33,7 @@ export class DashboardComponent {
         legend: {
           labels: {
             usePointStyle: true,
-            color: 'red',
+            color: 'black',
           },
         },
       },
