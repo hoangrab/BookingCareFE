@@ -22,37 +22,32 @@
                   <!-- <p class="text-center small">Enter your username & password to login</p> -->
                 </div>
 
-                <form class="row g-3 needs-validation" novalidate>
+                <form class="row g-3 needs-validation" [formGroup]="loginRequest" (ngSubmit)="onsubmit()">
 
                   <div class="col-12">
                     <label for="yourUsername" class="form-label">Username</label>
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
-                      <input type="text" name="username" class="form-control" id="yourUsername" required>
-                      <div class="invalid-feedback">Please enter your username.</div>
+                      <input class="form-control" formControlName="username"/>                     
                     </div>
+                    <p class="text-danger" *ngIf="f['username'].errors !== null && submited ">Username cannot be null and min 6</p>
                   </div>
 
                   <div class="col-12">
                     <label for="yourPassword" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="yourPassword" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
+                    <input type="password" class="form-control" id="yourPassword" formControlName="password">
+                    <p class="text-danger" *ngIf="f['password'].errors !== null && submited">Password cannot be null and min 6</p>
                   </div>
-                  <!-- <div class="col-12">
-                    <label for="yourPassword" class="form-label">File</label>
-                    <input type="file" name="file" (change)="onch($event)" class="form-control" id="yourFile" required>
-                    <div class="invalid-feedback">Please enter your File!</div>
-                  </div> -->
-
                   <div class="col-12">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                      <input class="form-check-input" type="checkbox" id="rememberMe" formControlName="remember">
                       <label class="form-check-label" for="rememberMe">Remember me</label>
                     </div>
                   </div>
                   <div class="col-12">
                     <button class="btn btn-primary w-100">Login</button>
                   </div>
+                  <!-- {{loginRequest.value | json}} -->
                 </form>
 
               </div>

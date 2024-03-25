@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Doctor } from 'src/app/models/doctor';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,25 +10,27 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  file1!: File; 
-  constructor(private auth : AuthService){};
-  
-  result !: Observable<any>;
+  loginRequest!: FormGroup;
+  submited = false;
 
-  onch(file : any) {
-    console.log(file)
-    this.file1 = file.target.files[0];
-    console.log(this.file1)
+  constructor(private auth : AuthService, private formbuilder: FormBuilder){};
+
+  ngOnInit() {
+    this.loginRequest = this.formbuilder.group({
+      username: ['',Validators.compose([Validators.required,Validators.minLength(6)])],
+      password: ['',Validators.compose([Validators.required,Validators.minLength(6)])],
+      remember: false
+    });
+  }
+  get f() {
+    return this.loginRequest.controls;
   }
 
-  lgin() {
-    let formdata = new FormData();
-    formdata.append('file',this.file1)
-    this.result = this.auth.loginService(formdata);
-    this.result.subscribe(
-      (response) => {
-        console.log(response)
-      }
-    );
+  onsubmit() {
+    this.submited = true;
+    if(!this.loginRequest.invalid){
+      const {username,password,remember} = this.loginRequest.value
+      this.auth.login(username,password).subscribe();
+    }
   }
 }
