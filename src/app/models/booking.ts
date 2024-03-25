@@ -13,6 +13,22 @@ export interface Booking {
     note: string
 }
 
+export type BookingDTO = {
+    name:string,
+    dob:string,
+    phone:string,
+    email:string,
+    gender:string,
+    address:string,
+    idMojor:number,
+    idUser:number,
+    date:string,
+    session:string;
+    note:string,
+    status:string
+}
+
+
 export const bookings: Booking[]=[
     {
         "id": 1,

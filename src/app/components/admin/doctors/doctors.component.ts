@@ -12,35 +12,9 @@ import { DoctorService } from 'src/app/services/doctor.service';
   styleUrls: ['./doctors.component.scss']
 })
 export class DoctorsComponent {
-  title=''
-  itemout: Doctor={
-    id: '',
-    avatar: '',
-    name: '',
-    khoa: {
-      id: 0,
-      name: ''
-    },
-    age: 0,
-    phone: '',
-    active: false
-  };
-  constructor(private route: ActivatedRoute,
-    private doctorService: DoctorService,
-    private router: Router) {}
-
-ldoctors!: Observable<Doctor[]>;
-
-ngOnInit() {
-  this.route.params.subscribe(params => {
-    const activeParam = params['vip'];
-    this.title = activeParam === 'active' ? 'Danh sách bác sĩ đang làm' : 'Danh sách bác sĩ đã rời';
-    this.ldoctors = this.doctorService.getAllDoctor(activeParam === 'active');
-    this.itemout.active= (activeParam === 'active')
-  });
-}
+  
 
   xem(item : Doctor) {
-    this.itemout = item;
+    // this.itemout = item;
   }
 }

@@ -5,6 +5,11 @@ export interface Major {
   image: string;
 }
 
+export type MajorDTO = {
+  name: string,
+  description:string,
+}
+
 export const majors: Major[] = [
   {
     id: 1,

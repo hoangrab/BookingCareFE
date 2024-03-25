@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { storageUtils } from 'src/app/utils/storage';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  signout() {
+    storageUtils.clear()
+    inject(Router).navigate(['login'])
+  }
 }

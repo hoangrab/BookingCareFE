@@ -14,6 +14,7 @@ import { HistoryComponent } from './history/history.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChartModule } from "primeng/chart";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -23,7 +24,8 @@ import { ChartModule } from "primeng/chart";
     imports: [
       CommonModule, // <-- Import thêm để dùng forms sau này
       AdminRoutingModule,
-      ChartModule
+      ChartModule,
+      ReactiveFormsModule
     ],
   })
   export class AdminModule {}

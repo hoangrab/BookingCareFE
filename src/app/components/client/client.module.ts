@@ -11,13 +11,17 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatInputModule } from "@angular/material/input";
-import { FormsModule, NgModel } from "@angular/forms";
+import { FormsModule, NgModel, ReactiveFormsModule } from "@angular/forms";
+import { DoctorComponent } from './doctor/doctor.component';
+import { ArticleComponent } from './article/article.component';
+import { ContactComponent } from './contact/contact.component';
+import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
 
 
 
 
 @NgModule({
-    declarations: [FooterComponent,HomeComponent,HeaderComponent,ClientComponent, MajorComponent, ScheduleComponent],
+    declarations: [FooterComponent,HomeComponent,HeaderComponent,ClientComponent, MajorComponent, ScheduleComponent, DoctorComponent, ArticleComponent, ContactComponent, DoctorDetailComponent],
     imports: [
       CommonModule, // <-- Import thêm để dùng forms sau này
       ClientRoutingModule,
@@ -25,7 +29,7 @@ import { FormsModule, NgModel } from "@angular/forms";
       MatFormFieldModule,
       MatNativeDateModule,
       MatInputModule,
-      FormsModule
+      ReactiveFormsModule
     ],
   })
   export class ClientModule {}
