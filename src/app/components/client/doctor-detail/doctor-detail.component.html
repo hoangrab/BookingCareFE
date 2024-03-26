@@ -50,7 +50,7 @@
                         </div>
                         <div class="doctorblog_description">
                             <p>BS Nguyễn Thị Liên Hương đã có hơn 20 năm kinh nghiệm trong lĩnh vực Mô phôi học. Bên cạnh công tác chuyên môn, bác sĩ Liên Hương còn dành nhiều thời gian cho hoạt động nghiên cứu khoa học và đóng góp nhiều công trình nghiên cứu, bài báo khoa học...</p>
-                            <button type="button">Đặt lịch khám</button>
+                            <button type="button" (click)="an = !an">Đặt lịch khám</button>
                         </div>
                     </div>
                 </div>
@@ -111,4 +111,5 @@
             </div>
         </div>
     </div>
+    <app-schedule [ktra]="an" [ok]="true"></app-schedule>
 </main>

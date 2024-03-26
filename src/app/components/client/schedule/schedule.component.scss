@@ -1,3 +1,28 @@
+.show {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+.show::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên các trình duyệt sử dụng WebKit (như Chrome, Safari) */
+}
+
+.button_exit {
+    font-size: 30px;
+    color: white;
+    background-color: #102E9E;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    right: 20%;
+    top: 6%;
+}
+
 input[type="radio"] {
     display: none;
 }
