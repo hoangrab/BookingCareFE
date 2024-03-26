@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./doctor-detail.component.scss']
 })
 export class DoctorDetailComponent {
-
+  an : boolean = true;
 }

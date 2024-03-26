@@ -49,11 +49,13 @@
     color: white;
     cursor: pointer;
     border: none;
+    background-color: transparent; /* Đặt màu nền là trong suốt */
+    border: none; 
 }
 
 .search_icon {
     color: #1691E2;
-    margin-left: -32px;
+    margin-left: -42px;
     font-size: 20px;
 }
 

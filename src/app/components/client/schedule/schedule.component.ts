@@ -1,5 +1,5 @@
 import { DatePipe, formatDate } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MatDatepickerInputEvent,
@@ -17,6 +17,8 @@ import { MajorService } from 'src/app/services/major.service';
   styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent {
+  @Input() ok = false;
+  @Input() ktra : boolean = false;
   ngayApi: Schedule[] = schedules;
   ngayApi1: Schedule[] = schedules;
   selectedTime: string | null = null; 
