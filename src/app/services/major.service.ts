@@ -25,6 +25,12 @@ export class MajorService {
     )
   }
 
+  getMajorByName(keyword : string) {
+    return this.http.get<apiResponse<Major[]>>(`${this.apiUrl}api/v1/majors?name=${keyword}`).pipe(
+      map(e => e.data)
+    )
+  }
+
   createMajor(formdata : FormData) : Observable<apiResponse<any>> {
     return this.http.post<apiResponse<any>>(`${this.apiUrl}api/v1/major`,formdata);
   }

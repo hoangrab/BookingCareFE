@@ -114,7 +114,7 @@
                             <p class="form_lable"><sup><i class="fa-solid fa-asterisk"
                                         style="color: red; font-size: 7px;"></i></sup>Chọn bác sĩ </p>
                             <div class="form_dropdown">
-                                <select class="dropdown" formControlName="idUser">
+                                <select class="dropdown" formControlName="idUser" (change)="onselectDoctor()">
                                     <option value="" disabled selected hidden>Chọn bác sĩ</option>
                                     <ng-container *ngFor="let item of listDoctor | async">
                                         <option [value]="item.id">{{item.fullName}}</option>
@@ -146,12 +146,12 @@
                         <div class="form_element">
                             <p class="form_lable"><sup><i class="fa-solid fa-asterisk" style="color: red; font-size: 7px;"></i></sup>Thời gian khám trong ngày </p>
                             <div class="form_radio pure-g">
-                                <div class="pure-u-1-1 pure-u-sm-1-2">
-                                    <input type="radio" id="ontime1" name="session" value="ontime1" formControlName="session">
+                                <div class="pure-u-1-1 pure-u-sm-1-2" [hidden]="checksang">
+                                    <input type="radio" id="ontime1" name="session" value="SANG" formControlName="session">
                                     <label for="ontime1">Sáng</label>
                                 </div>
-                                <div class="pure-u-1-1 pure-u-sm-1-2">
-                                    <input type="radio" id="overtime1" name="session" value="overtime1" formControlName="session">
+                                <div class="pure-u-1-1 pure-u-sm-1-2" [hidden]="checkchieu">
+                                    <input type="radio" id="overtime1" name="session" value="CHIEU" formControlName="session">
                                     <label for="overtime1">Chiều</label><br>
                                 </div>
                             </div>

@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Schedule, schedules } from '../models/schedule';
-import { Observable, of } from 'rxjs';
+import { Schedule, Schedules, schedules } from '../models/schedule';
+import { Observable, map, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environment/environment.dev';
+import { apiResponse } from '../models/apiResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScheduleService {
-  constructor() {}
+  apiUrl = environment.apiBaseUrl;
+  constructor(private http : HttpClient) {}
 
   getAllSchedule(): Observable<Schedule[]> {
     return of(schedules);
+  }
+
+  getAllScheduleByIdDoctor(id : string) {
+    return this.http.get<apiResponse<Schedules[]>>(`${this.apiUrl}${id}`).pipe(
+      map(e => e.data)
+    )
   }
 }

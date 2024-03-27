@@ -4,12 +4,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MatDatepickerInputEvent,
 } from '@angular/material/datepicker';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Doctor } from 'src/app/models/doctor';
 import { Major } from 'src/app/models/major';
-import { Schedule, schedules } from 'src/app/models/schedule';
+import { Schedule, Schedules, schedules } from 'src/app/models/schedule';
+import { BookingService } from 'src/app/services/booking.service';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { MajorService } from 'src/app/services/major.service';
+import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
   selector: 'app-schedule',
@@ -19,8 +21,12 @@ import { MajorService } from 'src/app/services/major.service';
 export class ScheduleComponent {
   @Input() ok = false;
   @Input() ktra : boolean = false;
-  ngayApi: Schedule[] = schedules;
-  ngayApi1: Schedule[] = schedules;
+  // checksang va checkchieu la de hien thi button sang hay chieu
+  checksang = true;
+  checkchieu = true;
+  //ngayban : Ngày mà bác sĩ có lịch trùng
+  ngayban !: Schedules[]
+  disableDate !: Date[];
   selectedTime: string | null = null; 
   submited=false;
   listMajor!:Observable<Major[]>;
@@ -28,7 +34,8 @@ export class ScheduleComponent {
 
   addForm!: FormGroup;
 
-  constructor(private formbuilder : FormBuilder,private majorsv: MajorService,private doctorsv : DoctorService){};
+  constructor(private formbuilder : FormBuilder,private majorsv: MajorService,
+    private doctorsv : DoctorService, private schesv : ScheduleService,private bookingsv : BookingService){};
   
   ngOnInit() {
     this.addForm = this.formbuilder.group({
@@ -60,10 +67,20 @@ export class ScheduleComponent {
     return this.addForm.controls;
   }
 
+  // luu thong tin o ham nay
   onsb() {
     this.submited = true;
     if(this.addForm.valid) {
-      alert('ok')
+      const {name,dob,phone,email,gender,address,idMajor,idUser,date,session,note} = this.addForm.value;
+      this.bookingsv.createBooking(name,dob,phone,email,gender,address,idMajor,idUser,date,session,note).subscribe({
+        next(value) {
+            alert('Đã thêm thành công')
+            // redirect đến 1 trang nào đó với nội dung là đã thêm thành công, đang chờ duyệt , check email để nhận kết quả
+        },
+        error(err) {
+            console.log('Đã có lỗi xảy ra khi thêm: ',err)
+        },
+      })
     }
   }
 
@@ -78,7 +95,21 @@ export class ScheduleComponent {
           console.log('co loi',err)
       },
     });
+  }
 
+  onselectDoctor() {
+    const id = this.addForm?.get('idDoctor')?.value;
+    this.schesv.getAllScheduleByIdDoctor(id).subscribe({
+      next : (value) => {
+          this.ngayban = value;
+          value.forEach( e => {
+            this.disableDate.push(new Date(e.date)) // an di ngay trong lich duoc chon
+          });
+      },
+      error(err) {
+          console.log('Hava error!!!')
+      },
+    });
   }
 
   uncheckRadio() {
@@ -86,17 +117,22 @@ export class ScheduleComponent {
   }
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     const {name,dob,phone,email,gender,address,idMajor,idUser,date,session,note} = this.addForm.value;
-    console.log(event)
-    const isoString: string = formatDate(date, 'yyyy-MM-ddTHH:mm:ssZ', 'en-US'); // Chuyển đổi sang chuỗi ISO 8601
-    console.log('gia tri that:',isoString); // Log để kiểm tra
+    const isoString: string = formatDate(date, 'yyyy-MM-dd', 'en-US'); // Gia tri cua ngay duoc chon
+    console.log('gia tri that:',isoString);
+
+    const ngayay = this.ngayban.find(e => e.date == isoString)
+    if(!ngayay?.session) {
+      this.checksang=false;
+      this.checkchieu=false
+    }
+    else if(ngayay?.session=='CHIEU') this.checkchieu = true;
+    else this.checksang = true;
+
   }
 
-
   myFilter = (d: Date | null): boolean => {
-    const disabledDates: Date[] = [];
-    this.ngayApi.forEach((e) => disabledDates.push(new Date(e.date)));
     const selectedDate = d || new Date();
-    return !disabledDates.some((disabledDate) =>
+    return !this.disableDate.some((disabledDate) =>
       this.isSameDate(selectedDate, disabledDate)
     );
   };

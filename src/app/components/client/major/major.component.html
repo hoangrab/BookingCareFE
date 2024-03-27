@@ -8,8 +8,8 @@
     <div class="form_search_area">
         <div class="inner_form_search_area">
             <form action="" class="form_search">
-                <input type="text" class="form_search_input" placeholder="Nhập chuyên khoa">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass search_icon"></i></button>
+                <input type="text" class="form_search_input" placeholder="Nhập chuyên khoa" [(ngModel)]="keyword">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass search_icon" (click)="onSearch()"></i></button>
             </form>
         </div>
     </div>
@@ -19,86 +19,18 @@
     <div class="list_major_area">
         <div class="inner_section_area">
             <div class="pure-g">
-                <div class="pure-u-md-1-4 pure-u-1-2">
-                    <div class="list_major_item">
-                        <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
-                            <div class="major_item_image">
-                                <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
-                            </div>
-                            <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
-                        </a>
+                <ng-container *ngFor="let item in listMajor | async">
+                    <div class="pure-u-md-1-4 pure-u-1-2">
+                        <div class="list_major_item">
+                            <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
+                                <div class="major_item_image">
+                                    <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
+                                </div>
+                                <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="pure-u-md-1-4 pure-u-1-2">
-                    <div class="list_major_item">
-                        <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
-                            <div class="major_item_image">
-                                <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
-                            </div>
-                            <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="pure-u-md-1-4 pure-u-1-2">
-                    <div class="list_major_item">
-                        <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
-                            <div class="major_item_image">
-                                <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
-                            </div>
-                            <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="pure-u-md-1-4 pure-u-1-2">
-                    <div class="list_major_item">
-                        <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
-                            <div class="major_item_image">
-                                <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
-                            </div>
-                            <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="pure-u-md-1-4 pure-u-1-2">
-                    <div class="list_major_item">
-                        <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
-                            <div class="major_item_image">
-                                <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
-                            </div>
-                            <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="pure-u-md-1-4 pure-u-1-2">
-                    <div class="list_major_item">
-                        <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
-                            <div class="major_item_image">
-                                <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
-                            </div>
-                            <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="pure-u-md-1-4 pure-u-1-2">
-                    <div class="list_major_item">
-                        <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
-                            <div class="major_item_image">
-                                <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
-                            </div>
-                            <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="pure-u-md-1-4 pure-u-1-2">
-                    <div class="list_major_item">
-                        <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
-                            <div class="major_item_image">
-                                <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
-                            </div>
-                            <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
-                        </a>
-                    </div>
-                </div>
+                </ng-container>
             </div>
         </div>
     </div>

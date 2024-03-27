@@ -19,7 +19,7 @@ export class HeaderComponent {
   user !: Observable<Doctor>;
 
   ngOnInit() {
-    this.listDoctor = this.doctorsv.getAllDoctor(true);
+    this.listDoctor = this.doctorsv.getAllDoctor('');
     this.listDoctor.subscribe();
 
     this.user = this.doctorsv.getDoctorById(storageUtils.get('userId'));

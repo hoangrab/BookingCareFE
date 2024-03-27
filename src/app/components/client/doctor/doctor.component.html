@@ -8,8 +8,8 @@
     <div class="form_search_area">
         <div class="inner_form_search_area">
             <form action="" class="form_search">
-                <input type="text" class="form_search_input" placeholder="Tìm bác sĩ">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass search_icon"></i></button>
+                <input type="text" class="form_search_input" placeholder="Tìm bác sĩ" [(ngModel)]="keyword">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass search_icon" (click)="onSearch()"></i></button>
             </form>
         </div>
     </div>
@@ -23,9 +23,10 @@
                 </div>
                 <div class="pure-u-lg-1-3 pure-u-sm-1-3 pure-u-2-4">
                     <div class="dropdown_box">
-                        <select name="doctor_major_search" id="doctor_major_search">
+                        <select name="doctor_major_search" id="doctor_major_search" [(ngModel)]="khoa" (change)="onSelect()">
                             <option value="b" selected disabled>Chuyên khoa</option>
-                            <option value="timmach">Chuyên khoa</option>
+                            <option value="1">Tim mach</option>
+                            <option value="2">Than kinh</option>
                         </select>
                     </div>
                 </div>
