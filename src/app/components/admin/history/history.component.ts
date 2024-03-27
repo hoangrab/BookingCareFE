@@ -9,7 +9,7 @@ import { BookingService } from 'src/app/services/booking.service';
   styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent {
-  lbooking!: Observable<Booking[]>;
+  lbooking!: Observable<Booking[]>;  // get list booking have success status;
 
   itemout: Booking={
     id: 0,

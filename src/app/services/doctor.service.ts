@@ -19,7 +19,7 @@ export class DoctorService {
     if(storageUtils.get('userId')) this.userid = storageUtils.get('userId')
   }
 
-  getAllDoctor(param : boolean) : Observable<Doctor[]> {
+  getAllDoctor(param : string) : Observable<Doctor[]> {
     return this.http.get<apiResponse<Doctor[]>>(`${this.apiUrl}api/v1/doctors`).pipe(
       map(e => {
         return e.data;

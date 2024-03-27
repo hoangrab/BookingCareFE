@@ -29,7 +29,8 @@ import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
       MatFormFieldModule,
       MatNativeDateModule,
       MatInputModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      FormsModule
     ],
   })
   export class ClientModule {}

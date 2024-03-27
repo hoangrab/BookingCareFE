@@ -12,6 +12,12 @@ export interface Schedule {
   };
 }
 
+export type Schedules =  {
+  id: number,
+  date: string,
+  session:string;
+}
+
 export const schedules: Schedule[] = [
   {
     id: 1,

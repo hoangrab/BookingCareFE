@@ -1,27 +1,90 @@
 <main id="main" class="main">
   <div class="pagetitle" style="margin-top: 20px; margin-bottom: 20px">
-    <!-- <h1>{{title}}</h1> -->
+    <h1>{{title}}</h1>
   </div>
   <!-- End Page Title -->
-<!-- 
-  <button *ngIf="itemout.active==true" type="button" class="btn btn-outline-success rounded-pill" data-bs-toggle="modal"
+
+  <button *ngIf="status == 'active'" type="button" class="btn btn-outline-success rounded-pill" data-bs-toggle="modal"
     data-bs-target="#basicModal">
     <i class="bi bi-person-plus-fill"></i> &nbsp;Thêm mới
-  </button> -->
+  </button>
   <br>
   <br>
 
-  <!-- <section class="section">
+  <section class="section">
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-body" *ngIf="!(ldoctors | async); else loaded">
-            <ng-container [ngTemplateOutlet]="loading"></ng-container>
+          <div class="card-body">
+
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+              <thead class="text-center">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Avatar</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Khoa</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Phone</th>
+                  <th scope=col>Active</th>
+                  <th scope="col" style="margin-left: 50px;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <!-- <tr *ngFor="let item of ldoctors | async"> -->
+                <!-- <th scope="row">{{item.id}}</th>
+        <th>
+          <img [src]="item.avatar"
+            style="width: 50px;height: 50px;" />
+        </th>
+        <td>{{item.name}}</td>
+        <td>{{item.khoa.name}}</td>
+        <td>{{item.age}}</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.active}}</td>
+        <td scope="row" >
+          <button *ngIf="item.active==true" type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal"
+            data-bs-target="#basicModalxem" (click)="xem(item)">
+            <i class="bi bi-eye"></i></button>&nbsp;&nbsp;
+          <button *ngIf="item.active==true" type="button" class="btn btn-warning rounded-pill" data-bs-toggle="modal" (click)="xem(item)"
+            data-bs-target="#basicModalsua">
+            <i class="bi bi-wrench-adjustable"></i></button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-danger rounded-pill" data-bs-toggle="modal" (click)="xem(item)"
+            data-bs-target="#basicModalxoa">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </td> -->
+                <!-- </tr> -->
+
+              </tbody>
+            </table>
+            <!-- End Table with hoverable rows -->
+            <!-- <div class="card">
+      <div class="card-body"> -->
+            <nav aria-label="Page navigation example">
+              <ul class="pagination" style="justify-content: center; margin-top: 20px">
+                <li class="page-item">
+                  <a class="page-link" href="#">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+            <!-- End Basic Pagination -->
+
+
+
+
           </div>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 </main>
 <!-- End #main -->
 
@@ -246,7 +309,7 @@
     </thead>
     <tbody class="text-center">
       <!-- <tr *ngFor="let item of ldoctors | async"> -->
-        <!-- <th scope="row">{{item.id}}</th>
+      <!-- <th scope="row">{{item.id}}</th>
         <th>
           <img [src]="item.avatar"
             style="width: 50px;height: 50px;" />
