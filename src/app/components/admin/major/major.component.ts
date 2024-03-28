@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, delay, of } from 'rxjs';
 import { apiResponse } from 'src/app/models/apiResponse';
@@ -78,7 +78,7 @@ export class MajorComponent {
       formda.append('majordto',JSON.stringify({name,description}))
       this.majorSv.updateMajor(formda,this.itemout.id).subscribe({
         next:(value) => {
-          this.loaddata()
+          this.loaddata();
           alert('Đã cập nhật thành công thành công!!!')
         },
         error(value) {
