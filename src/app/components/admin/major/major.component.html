@@ -5,7 +5,7 @@
   <!-- End Page Title -->
 
   <button type="button" class="btn btn-outline-success rounded-pill" data-bs-toggle="modal"
-    data-bs-target="#basicModal">
+    data-bs-target="#basicModal" (click)="addForm.reset();fileanh1 = null;submited = false;urlPreview = ''">
     <i class="bi bi-person-plus-fill"></i> &nbsp;Thêm mới
   </button>
   <br>
@@ -56,7 +56,7 @@
               </div>
               <div class="col-12">
                 <label>Preview image:</label> &nbsp;&nbsp;
-                <img [src]="!submited ? '' : fileanh" alt=""
+                <img [src]="urlPreview" alt=""
                   style="height: 100px; width: 100px" />
               </div>
 
@@ -113,7 +113,7 @@
       </div>
     </div>
     <!-- End Basic Modal-->
-    <div class="modal fade" id="basicModalsua" [formGroup]="addForm" >
+    <div class="modal fade" id="basicModalsua" >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -122,34 +122,37 @@
           </div>
           <div class="modal-body">
             <!-- Multi Columns Form -->
-            <form class="row g-3">
+            <form class="row g-3" [formGroup]="addForm" (ngSubmit)="onupdate()">
               <div class="col-md-12">
                 <label for="inputName5" class="form-label">Tên chuyên ngành</label>
-                <input type="text" [value]="itemout.name" class="form-control" id="inputName5" (input)="onchanged()"
+                <input type="text" [value]="itemout.name" class="form-control" id="inputName5"
                  formControlName="name" />
+                 <p class="text-danger" *ngIf="f['name'].errors !== null && submited ">Name cannot be null and min 6</p>
               </div>
               <div class="col-md-12">
                 <label for="inputEmail5" class="form-label">Mô tả</label>
-                <textarea [value]="itemout.description" class="form-control" (input)="onchanged()"
+                <textarea [value]="itemout.description" class="form-control" 
                 id="inputEmail5" formControlName="description" style="height: 120px"></textarea>
+                <p class="text-danger" *ngIf="f['description'].errors !== null && submited ">Name cannot be null and min 6</p>
               </div>
               <div class="col-md-8">
                 <label for="inputPassword5" class="form-label">Hình ảnh (mặc định là ảnh cũ nếu không đổi)</label>
-                <input type="file" class="form-control" id="inputPassword5" (change)="sb($event)" (change)="onchanged()" />
+                <input type="file" class="form-control" id="inputPassword5" (change)="sb($event)" />
               </div>
               <div class="col-12">
                 <label>Preview image:</label> &nbsp;&nbsp;
-                <img [src]="itemout.image" alt=""
+                <img [src]="urlPreview || itemout.image" alt=""
                   style="height: 100px; width: 100px" />
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Hủy
+                </button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
               </div>
             </form>
             <!-- End Multi Columns Form -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              Hủy
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>

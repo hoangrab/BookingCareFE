@@ -19,7 +19,7 @@ export class MajorComponent {
     this.listMajor = this.majorsv.getAllMajors();
     this.listMajor.subscribe({
       next(value) {
-          // Handle 
+          console.log(value)
       },
       error(err) {
           console.log('Error!!!',err)

@@ -14,10 +14,9 @@ export class MajorComponent {
   lmajors!: Observable<Major[]>;
   addForm !: FormGroup;
   submited = false;
-  changed = false;
 
-  fileanh = '';
-  fileanh1!:File;
+  urlPreview = '';
+  fileanh1 : File | null = null;
 
   itemout: Major = {
     id: 0,
@@ -37,12 +36,6 @@ export class MajorComponent {
     });
   }
 
-  onchanged() {
-    this.changed = true;
-    console.log('da thay doi', this.changed)
-    console.log(this.addForm.value)
-  }
-
   get f() {
     return this.addForm.controls;
   }
@@ -57,7 +50,9 @@ export class MajorComponent {
     if (!this.addForm.invalid) {
       const {name,description,file} = this.addForm.value;
       const formda = new FormData();
-      formda.append('file',this.fileanh1)
+      if (this.fileanh1 !== null) {
+        formda.append('file', this.fileanh1);
+      }
       formda.append('majordto',JSON.stringify({name,description}))
       this.majorSv.createMajor(formda).subscribe({
         next:(value) => {
@@ -65,14 +60,32 @@ export class MajorComponent {
           alert('Đã tạo thành công!!!')
         },
         error(value) {
-          alert('Có lỗi rồi cu')
+          alert('Có lỗi rồi!!!')
         }
       })
     }
   }
 
   onupdate() {
-
+    this.submited = true;
+    if (!this.addForm.controls['name'].errors && !this.addForm.controls['description'].errors) {
+      console.log('ok')
+      const {name,description,file} = this.addForm.value;
+      const formda = new FormData();
+      if (this.fileanh1 !== null ) {
+        formda.append('file', this.fileanh1);
+      }
+      formda.append('majordto',JSON.stringify({name,description}))
+      this.majorSv.updateMajor(formda,this.itemout.id).subscribe({
+        next:(value) => {
+          this.loaddata()
+          alert('Đã cập nhật thành công thành công!!!')
+        },
+        error(value) {
+          alert('Có lỗi rồi!!!')
+        }
+      })
+    }
   }
 
   sb(event: any) {
@@ -81,19 +94,19 @@ export class MajorComponent {
     const reader = new FileReader();
 
     reader.onload = (e: any) => {
-      this.fileanh = e.target.result;
+      this.urlPreview = e.target.result;
     };
     reader.readAsDataURL(file);
   }
   xem(item: Major) {
-    this.changed = false;
     this.itemout = item;
+    this.fileanh1 = null;
+    this.addForm.patchValue({
+      name: item.name,
+      description: item.description,
+    });
+    
   }
-
-  load() : void {
-    alert('heeh')
-  }
-
   xoa(id: number){
     this.majorSv.delete(id).subscribe({
      next:(value) => {

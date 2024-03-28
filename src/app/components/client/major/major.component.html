@@ -19,18 +19,16 @@
     <div class="list_major_area">
         <div class="inner_section_area">
             <div class="pure-g">
-                <ng-container *ngFor="let item in listMajor | async">
-                    <div class="pure-u-md-1-4 pure-u-1-2">
+                    <div class="pure-u-md-1-4 pure-u-1-2" *ngFor="let item of listMajor | async">
                         <div class="list_major_item">
                             <a href="https://tamanhhospital.vn/chuyen-khoa/trung-tam-mat/">
                                 <div class="major_item_image">
-                                    <img src="https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png" alt="">
+                                    <img [src]="item.image" alt="">
                                 </div>
-                                <p class="major_item_text">TRUNG TÂM MẮT CÔNG NGHỆ CAO</p>
+                                <p class="major_item_text">{{item.name}}</p>
                             </a>
                         </div>
                     </div>
-                </ng-container>
             </div>
         </div>
     </div>
