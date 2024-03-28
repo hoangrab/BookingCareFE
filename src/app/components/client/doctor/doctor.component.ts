@@ -18,7 +18,7 @@ export class DoctorComponent {
   constructor(private route : Router, private doctorsv : DoctorService){};
 
   ngOnInit() {
-    this.listDoctor = this.doctorsv.getAllDoctor();
+    this.listDoctor = this.doctorsv.getAllDoctor('active');
     this.listDoctor.subscribe({
       next(value) {
           // logic code
@@ -30,7 +30,7 @@ export class DoctorComponent {
   }
 
   onSearch() {
-    this.listDoctor = this.doctorsv.getAllDoctor();
+    this.listDoctor = this.doctorsv.getAllDoctor('active');
     this.listDoctor.subscribe({
       next(value) {
           // logic code

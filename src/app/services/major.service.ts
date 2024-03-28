@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, delay, map, of } from 'rxjs';
 import { Major, MajorDTO, majors } from '../models/major';
 import { environment } from '../environment/environment.dev';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { apiResponse } from '../models/apiResponse';
 
 @Injectable({
@@ -10,11 +10,7 @@ import { apiResponse } from '../models/apiResponse';
 })
 export class MajorService {
 
-  apiUrl = environment.apiBaseUrl;
-
-   header = new Headers({
-    'Content-Type': 'multipart/form-data'
-  })
+  apiUrl = environment.apiBaseUrl;  
 
   constructor(private http : HttpClient) { }
 
@@ -32,8 +28,15 @@ export class MajorService {
   }
 
   createMajor(formdata : FormData) : Observable<apiResponse<any>> {
-    return this.http.post<apiResponse<any>>(`${this.apiUrl}api/v1/major`,formdata);
+    return this.http.post<apiResponse<any>>(`${this.apiUrl}api/v1/major`,formdata, );
   }
+
+  updateMajor(formdata : FormData, id : number) {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'multipart/form-data');
+    return this.http.put<apiResponse<any>>(`${this.apiUrl}api/v1/major/${id}`,formdata, {headers : headers})
+  }
+
 
   delete(id : number) : Observable<apiResponse<any>> {
     return this.http.delete<apiResponse<any>>(`${this.apiUrl}api/v1/major/${id}`);
