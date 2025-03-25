@@ -15,8 +15,8 @@ import { ContactComponent } from './contact/contact.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { ChartModule } from "primeng/chart";
-import { DataTablesModule } from "angular-datatables";
-
+import { DataTablesModule } from "angular-datatables"
+import { ToastrModule } from "ngx-toastr";
 
 
 
@@ -27,7 +27,7 @@ import { DataTablesModule } from "angular-datatables";
       AdminRoutingModule,
       ReactiveFormsModule,
       ChartModule,
-      DataTablesModule
-    ],
-  })
+      DataTablesModule,
+      ToastrModule
+  ]})
   export class AdminModule {}

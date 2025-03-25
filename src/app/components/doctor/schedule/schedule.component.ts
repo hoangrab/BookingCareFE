@@ -20,6 +20,7 @@ import { storageUtils } from 'src/app/utils/storage';
 export class ScheduleComponent {
   lschedule : any;
   lbooking : any;
+  itemClick : any = null;
   string1 = ''
   addForm!:FormGroup
   dtTrigger:Subject<any>=new Subject<any>();
@@ -140,4 +141,9 @@ export class ScheduleComponent {
       },
     })
   }
+
+  changeObject(item: any) {
+      this.itemClick = item;
+  }
+
 }

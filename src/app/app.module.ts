@@ -20,9 +20,16 @@ import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorInterceptor } from './interceptor/auth-interceptor.interceptor';
 import { SpinnerComponent } from './components/auth/spinner/spinner.component';
 import { LoadingInterceptor } from './interceptor/loading.interceptor';
+import { ToastComponent } from './components/auth/toast/toast.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SpinnerComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    SpinnerComponent,
+    ToastComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,6 +43,7 @@ import { LoadingInterceptor } from './interceptor/loading.interceptor';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {
