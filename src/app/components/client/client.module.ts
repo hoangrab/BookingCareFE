@@ -16,6 +16,7 @@ import { DoctorComponent } from './doctor/doctor.component';
 import { ArticleComponent } from './article/article.component';
 import { ContactComponent } from './contact/contact.component';
 import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
+import { NgxPaginationModule } from "ngx-pagination";
 
 
 
@@ -30,7 +31,8 @@ import { DoctorDetailComponent } from './doctor-detail/doctor-detail.component';
       MatNativeDateModule,
       MatInputModule,
       ReactiveFormsModule,
-      FormsModule
+      FormsModule,
+      NgxPaginationModule
     ],
   })
   export class ClientModule {}

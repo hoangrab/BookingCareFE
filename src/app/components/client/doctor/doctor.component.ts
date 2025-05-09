@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, RouterLinkActive } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Doctor } from 'src/app/models/doctor';
 import { Major } from 'src/app/models/major';
 import { DoctorService } from 'src/app/services/doctor.service';
@@ -14,7 +14,8 @@ import { MajorService } from 'src/app/services/major.service';
 })
 export class DoctorComponent {
   // render, search, select major, pagination
-  listDoctor!: Observable<Doctor[]>
+  p : any
+  listDoctor : any
   listMajor!: Observable<Major[]>
   addForm !: FormGroup;
   khoa = 0;
@@ -27,15 +28,7 @@ export class DoctorComponent {
       key : ['']
     })
     this.listDoctor = this.doctorsv.getAllDoctors('true');
-    this.listDoctor.subscribe({
-      next(value) {
-          // logic code
-          console.log('get data ok' + value)
-      },
-      error(err) {
-          console.log('Error!!!',err)
-      },
-    })
+    this.listDoctor.subscribe((value: any) => this.listDoctor = value)
 
     this.listMajor = this.majorsv.getAllMajors();
     this.listMajor.subscribe({
@@ -53,27 +46,19 @@ export class DoctorComponent {
   onSearch() {
     const {key} = this.addForm.value;
     this.listDoctor = this.doctorsv.getAllDoctorByMajor(null,'true',null,key);
-    this.listDoctor.subscribe({
-      next(value) {
-        console.log('get data ok' + value)
-      },
-      error(err) {
-          console.log('Error!!!',err)
-      },
-    })
+    this.listDoctor.subscribe((value : any) => this.listDoctor = value)
   }
 
   onSelect() {
-    console.log(this.khoa)
-    this.listDoctor = this.doctorsv.getAllDoctorByMajor(null,'true',this.khoa,null);
-    this.listDoctor.subscribe({
-      next(value) {
-        // logic code
-    },
-    error(err) {
-        console.log('Error!!!',err)
-    },
-    })
+    this.p = 1
+    if(this.khoa==-1) {
+      this.listDoctor = this.doctorsv.getAllDoctors('true');
+      this.listDoctor.subscribe((value: any) => this.listDoctor = value)
+    }
+    else {
+      this.listDoctor = this.doctorsv.getAllDoctorByMajor(null,'true',this.khoa,null);
+      this.listDoctor.subscribe((value : any) => this.listDoctor = value)
+    }
   }
 
   xem(id : number) {
